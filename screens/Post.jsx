@@ -44,10 +44,10 @@ const Post = ({ navigation, route }) => {
 
                 <View style={styles.postHeader}>
                     <View style={[styles.userProfile, { backgroundColor: post.profileColor }]}>
-                        <Text style={styles.userProfileChar}>{post.userId}
+                        <Text style={styles.userProfileChar}>{post.userName[0]}
                         </Text>
                     </View>
-                    <Text style={styles.userName}>userId: {post.userId}</Text>
+                    <Text style={styles.userName}>{post.userName}</Text>
                 </View>
 
                 <Text style={styles.postTitle}>{post.title}</Text>

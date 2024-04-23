@@ -6,6 +6,7 @@ const Home = ({ navigation }) => {
     const [posts, setPosts] = useState(null)
     const [searchText, setSearchText] = useState('')
     const [filteredPosts, setFilteredPosts] = useState(null)
+    const [users, setUsers] = useState(null)
     const getRandomProfileColor = () => {
         const colors = ["#4cc5e1", "#b5d45b", "#eee30b"];
         const randomIndex = Math.floor(Math.random() * colors.length);
@@ -13,6 +14,7 @@ const Home = ({ navigation }) => {
     };
 
     const applySearchFilter = () => {
+        console.log("Search filter")
         //    filter post by post title and user id as user name is not available
         const updatedFilteredPost = posts?.filter((post) =>
             post.title?.toLowerCase().includes(searchText.toLowerCase()) ||
@@ -21,32 +23,52 @@ const Home = ({ navigation }) => {
         setFilteredPosts(updatedFilteredPost)
     };
 
-    const getPost = async () => {
+    // modify the data by adding random color for profile background and username
+    const modifyData = (posts, users) => {
+        const modifiedData = posts?.map(post => {
+            const user = users?.find(user => user.id === post.userId);
+            return {
+                ...post,
+                profileColor: getRandomProfileColor(),
+                userName: user ? user.username : 'undefined'
+            };
+        });
+        return modifiedData;
+    };
+
+    //get user details and posts
+    const getUserDetails = async () => {
         try {
-            fetch('https://jsonplaceholder.typicode.com/posts')
-                .then((response) => response.json())
-                .then((json) => {
-                    if (json.length) {
-                        // add a random color to display user profile
-                        json.forEach(element => {
-                            element.profileColor = getRandomProfileColor()
-                        });
-                        setPosts(json)
-                        setFilteredPosts(json)
+            const url = `https://jsonplaceholder.typicode.com/users`
+            const response = await fetch(url)
+            const users = await response.json()
+            if (users.length) {
+                setUsers(users)
+                try {
+                    const responsePosts = await fetch('https://jsonplaceholder.typicode.com/posts');
+                    const posts = await responsePosts.json()
+
+                    if (posts.length) {
+                        const modifiedJsonData = modifyData(posts, users)
+                        setPosts(modifiedJsonData)
+                        setFilteredPosts(modifiedJsonData)
                     }
-                });
+                } catch (err) {
+                    Alert.alert(err)
+                }
+            }
         } catch (err) {
             Alert.alert(err)
         }
     }
 
     useEffect(() => {
-        getPost()
+        getUserDetails()
     }, [])
 
     useEffect(() => {
         applySearchFilter()
-    }, [searchText && searchText.trim() !== ""])
+    }, [searchText])
 
     return (
         <>
@@ -69,9 +91,9 @@ const Home = ({ navigation }) => {
                             <View style={styles.postContainer}>
                                 <View style={styles.postHeader}>
                                     <TouchableOpacity onPress={() => navigation.navigate('UserProfile')} style={[styles.userProfile, { backgroundColor: post.profileColor }]}>
-                                        <Text style={styles.userProfileChar}>{post.userId}</Text>
+                                        <Text style={styles.userProfileChar}>{post.userName[0]}</Text>
                                     </TouchableOpacity>
-                                    <Text style={styles.userName}>userId: {post.userId}</Text>
+                                    <Text style={styles.userName}>{post.userName}</Text>
                                 </View>
                                 <Text style={styles.postTitle}>{post.title}</Text>
                             </View>
