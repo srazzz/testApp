@@ -135,13 +135,13 @@ const styles = StyleSheet.create({
         color: theme.colors.primaryText
     },
     postTitle: {
-        fontSize: theme.fontSizes.large,
+        fontSize: theme.fontSizes.medium,
         fontWeight: "500",
         color: theme.colors.primaryText,
         marginVertical: 8
     },
     postDescription: {
-        fontSize: theme.fontSizes.medium,
+        fontSize: theme.fontSizes.small,
         color: theme.colors.secondaryText,
         borderBottomWidth: 0.5,
         borderColor: theme.colors.border,

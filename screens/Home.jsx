@@ -1,14 +1,30 @@
 import { useState, useEffect } from 'react'
-import { Text, TouchableOpacity, Alert, View, StyleSheet, ScrollView } from 'react-native'
+import { Text, TouchableOpacity, Alert, View, StyleSheet, ScrollView, TextInput } from 'react-native'
 import theme from "../theme"
-
+import Ionicons from 'react-native-vector-icons/Ionicons'
 const Home = ({ navigation }) => {
     const [posts, setPosts] = useState(null)
-
+    const [searchText, setSearchText] = useState(null)
+    const [filteredPosts, setFilteredPosts] = useState(null)
     const getRandomProfileColor = () => {
         const colors = ["#4cc5e1", "#b5d45b", "#eee30b"];
         const randomIndex = Math.floor(Math.random() * colors.length);
         return colors[randomIndex];
+    };
+
+    const applySearchFilter = () => {
+        console.log(typeof searchText)
+        // Handle empty or undefined searchText gracefully
+        if (!searchText || typeof searchText !== 'string') {
+            console.warn('Invalid search text provided. Please enter a string to filter posts.');
+            return null; // Or return an empty array if you prefer
+        }
+
+        // Filter posts using a more robust case-insensitive search
+        const updatedFilteredPost = posts?.filter((post) =>
+            post.title?.toLowerCase().includes(searchText.toLowerCase())
+        );
+        setFilteredPosts(updatedFilteredPost)
     };
 
     const getPost = async () => {
@@ -21,6 +37,7 @@ const Home = ({ navigation }) => {
                             element.profileColor = getRandomProfileColor()
                         });
                         setPosts(json)
+                        setFilteredPosts(json)
                     }
                 });
         } catch (err) {
@@ -32,14 +49,26 @@ const Home = ({ navigation }) => {
         getPost()
     }, [])
 
+    useEffect(() => {
+        applySearchFilter()
+    }, [searchText])
+
     return (
         <>
             <View style={styles.screenHeader}>
                 <Text style={styles.screenName}>Home</Text>
             </View>
             <ScrollView style={styles.container}>
-
-                {posts?.length ? posts.map((post) => {
+                <View style={styles.searchBar}>
+                    <TextInput
+                        style={styles.input}
+                        onChangeText={(value) => setSearchText(value.toString())}
+                        value={searchText}
+                        placeholder='Search Post'
+                    />
+                    <Ionicons name="search-outline" size={24} color={theme.colors.textPrimary} />
+                </View>
+                {filteredPosts?.length ? filteredPosts.map((post) => {
                     return (
                         <TouchableOpacity key={post.id} onPress={() => navigation.navigate('Post', { post: post })}>
                             <View style={styles.postContainer}>
@@ -84,10 +113,10 @@ const styles = StyleSheet.create({
     },
     postContainer: {
         backgroundColor: theme.colors.card,
-        marginBottom: 16,
+        marginBottom: 8,
         borderRadius: 8,
         padding: 8,
-        elevation: 4
+        elevation: 2
     },
     postHeader: {
         flex: 1,
@@ -116,5 +145,21 @@ const styles = StyleSheet.create({
         fontSize: theme.fontSizes.medium,
         fontWeight: "500",
         color: theme.colors.primaryText
+    },
+    searchBar: {
+        height: 50,
+        elevation: 3,
+        flex: 1,
+        alignItems: 'center',
+        justifyContent: 'space-between',
+        flexDirection: 'row',
+        backgroundColor: theme.colors.card,
+        marginBottom: 16,
+        borderRadius: 8,
+        paddingHorizontal: 16
+    },
+    input: {
+        fontSize: theme.fontSizes.medium,
+        width: '90%'
     }
 })
