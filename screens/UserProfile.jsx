@@ -17,7 +17,6 @@ const UserProfile = ({ navigation, route }) => {
             const data = await response.json()
             if (data !== null || data != {}) {
                 setUserDetails(data)
-                console.log(data)
             } else {
                 Alert.alert("something happened.Please ty again later!!")
             }

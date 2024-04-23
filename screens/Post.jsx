@@ -42,7 +42,7 @@ const Post = ({ navigation, route }) => {
             <ScrollView style={styles.contentContainer}>
                 <Text style={styles.postTitle}>Author </Text>
 
-                <TouchableOpacity style={styles.postHeader} onPress={() => navigation.navigate('UserProfile', { userId: post.userId })}>
+                <TouchableOpacity style={styles.postHeader} onPress={() => navigation.navigate('UserProfile', { post: post })}>
                     <View style={[styles.userProfile, { backgroundColor: post.profileColor }]}>
                         <Text style={styles.userProfileChar}>{post.userName[0]}
                         </Text>
