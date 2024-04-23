@@ -4,7 +4,7 @@ import theme from "../theme"
 import Ionicons from 'react-native-vector-icons/Ionicons'
 const Home = ({ navigation }) => {
     const [posts, setPosts] = useState(null)
-    const [searchText, setSearchText] = useState(null)
+    const [searchText, setSearchText] = useState('')
     const [filteredPosts, setFilteredPosts] = useState(null)
     const getRandomProfileColor = () => {
         const colors = ["#4cc5e1", "#b5d45b", "#eee30b"];
@@ -13,16 +13,10 @@ const Home = ({ navigation }) => {
     };
 
     const applySearchFilter = () => {
-        console.log(typeof searchText)
-        // Handle empty or undefined searchText gracefully
-        if (!searchText || typeof searchText !== 'string') {
-            console.warn('Invalid search text provided. Please enter a string to filter posts.');
-            return null; // Or return an empty array if you prefer
-        }
-
-        // Filter posts using a more robust case-insensitive search
+        //    filter post by post title and user id as user name is not available
         const updatedFilteredPost = posts?.filter((post) =>
-            post.title?.toLowerCase().includes(searchText.toLowerCase())
+            post.title?.toLowerCase().includes(searchText.toLowerCase()) ||
+            post.userId?.toString().includes(searchText.toLowerCase())
         );
         setFilteredPosts(updatedFilteredPost)
     };
@@ -33,6 +27,7 @@ const Home = ({ navigation }) => {
                 .then((response) => response.json())
                 .then((json) => {
                     if (json.length) {
+                        // add a random color to display user profile
                         json.forEach(element => {
                             element.profileColor = getRandomProfileColor()
                         });
@@ -51,7 +46,7 @@ const Home = ({ navigation }) => {
 
     useEffect(() => {
         applySearchFilter()
-    }, [searchText])
+    }, [searchText && searchText.trim() !== ""])
 
     return (
         <>
