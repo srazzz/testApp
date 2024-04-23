@@ -3,7 +3,7 @@ const theme = {
         primary: "#d61c18",
         secondary: "#ee5e5c",
         primaryText: "#000",
-        secondaryText: "#5d5d5d",
+        secondaryText: "#666",
         background: "whitesmoke",
         border: '#ccc',
         card: 'white'

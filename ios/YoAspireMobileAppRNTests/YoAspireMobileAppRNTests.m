@@ -7,11 +7,11 @@
 #define TIMEOUT_SECONDS 600
 #define TEXT_TO_LOOK_FOR @"Welcome to React"
 
-@interface YoAspireMobileAppRNTests : XCTestCase
+@interface VaaveTestTests : XCTestCase
 
 @end
 
-@implementation YoAspireMobileAppRNTests
+@implementation VaaveTestTests
 
 - (BOOL)findSubviewInView:(UIView *)view matching:(BOOL (^)(UIView *view))test
 {
