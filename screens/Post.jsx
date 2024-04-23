@@ -42,13 +42,13 @@ const Post = ({ navigation, route }) => {
             <ScrollView style={styles.contentContainer}>
                 <Text style={styles.postTitle}>Author </Text>
 
-                <View style={styles.postHeader}>
+                <TouchableOpacity style={styles.postHeader} onPress={() => navigation.navigate('UserProfile', { userId: post.userId })}>
                     <View style={[styles.userProfile, { backgroundColor: post.profileColor }]}>
                         <Text style={styles.userProfileChar}>{post.userName[0]}
                         </Text>
                     </View>
                     <Text style={styles.userName}>{post.userName}</Text>
-                </View>
+                </TouchableOpacity>
 
                 <Text style={styles.postTitle}>{post.title}</Text>
                 <Text style={styles.postDescription}>{post.body}</Text>
@@ -60,7 +60,10 @@ const Post = ({ navigation, route }) => {
                             return (
                                 <View style={styles.commentContainer} key={comment.id}>
                                     <Text style={styles.commentSubject}>{comment.name}</Text>
-                                    <Text style={styles.commentBody} ><Text style={styles.commentSubject}>Contact email: </Text>{comment.email}</Text>
+                                    <Text style={styles.commentBody} >
+                                        <Text style={styles.commentSubject}>Contact email: </Text>
+                                        {comment.email}
+                                    </Text>
                                     <Text style={styles.commentBody} numberOfLines={expandedComment.includes(comment.id) ? 0 : 2} ellipsizeMode="tail">{comment.body}</Text>
                                     {expandedComment.includes(comment.id) ?
                                         <Text style={styles.readMore} onPress={() => setExpandedComment(expandedComment.filter(commentId => commentId !== comment.id))}>
@@ -163,7 +166,8 @@ const styles = StyleSheet.create({
     commentBody: {
         fontSize: theme.fontSizes.small,
         fontWeight: "400",
-        color: theme.colors.secondaryText
+        color: theme.colors.secondaryText,
+        marginBottom: 8
     },
     readMore: {
         textAlign: 'right',

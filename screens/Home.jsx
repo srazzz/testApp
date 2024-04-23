@@ -13,12 +13,11 @@ const Home = ({ navigation }) => {
         return colors[randomIndex];
     };
 
+    // apply filter by using username and post title
     const applySearchFilter = () => {
-        console.log("Search filter")
-        //    filter post by post title and user id as user name is not available
         const updatedFilteredPost = posts?.filter((post) =>
             post.title?.toLowerCase().includes(searchText.toLowerCase()) ||
-            post.userId?.toString().includes(searchText.toLowerCase())
+            post.userName?.toLowerCase().toString().includes(searchText.toLowerCase())
         );
         setFilteredPosts(updatedFilteredPost)
     };
@@ -82,19 +81,20 @@ const Home = ({ navigation }) => {
                         onChangeText={(value) => setSearchText(value.toString())}
                         value={searchText}
                         placeholder='Search Post'
+                        placeholderTextColor={theme.colors.border}
                     />
-                    <Ionicons name="search-outline" size={24} color={theme.colors.textPrimary} />
+                    <Ionicons name="search-outline" size={24} color={theme.colors.primaryText} />
                 </View>
                 {filteredPosts?.length ? filteredPosts.map((post) => {
                     return (
                         <TouchableOpacity key={post.id} onPress={() => navigation.navigate('Post', { post: post })}>
                             <View style={styles.postContainer}>
-                                <View style={styles.postHeader}>
-                                    <TouchableOpacity onPress={() => navigation.navigate('UserProfile')} style={[styles.userProfile, { backgroundColor: post.profileColor }]}>
+                                <TouchableOpacity style={styles.postHeader} onPress={() => navigation.navigate('UserProfile', { post: post, navigation })} >
+                                    <View style={[styles.userProfile, { backgroundColor: post.profileColor }]}>
                                         <Text style={styles.userProfileChar}>{post.userName[0]}</Text>
-                                    </TouchableOpacity>
+                                    </View>
                                     <Text style={styles.userName}>{post.userName}</Text>
-                                </View>
+                                </TouchableOpacity>
                                 <Text style={styles.postTitle}>{post.title}</Text>
                             </View>
                         </TouchableOpacity>
@@ -177,6 +177,7 @@ const styles = StyleSheet.create({
     },
     input: {
         fontSize: theme.fontSizes.medium,
-        width: '90%'
+        width: '90%',
+        color: theme.colors.primaryText
     }
 })
