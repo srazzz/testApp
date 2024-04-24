@@ -16,9 +16,11 @@ const Post = ({ navigation, route }) => {
             const data = await response.json()
             if (data.length) {
                 setComments(data)
+            }else{
+                Alert.alert("Error",'Something happened.Try again later!')
             }
         } catch (err) {
-            Alert.alert(err)
+            Alert.alert('Error', err.message)
         }
     }
     useEffect(() => {

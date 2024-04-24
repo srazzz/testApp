@@ -74,12 +74,14 @@ const Home = ({ navigation }) => {
                         setFilteredPosts(modifiedJsonData)
                     }
                 } catch (err) {
-                    Alert.alert(err)
+                    Alert.alert('Error', err.message)
                 }
+            } else {
+                Alert.alert("Error", "Something happened.Try again later.")
             }
             setShowLoader(false)
         } catch (err) {
-            Alert.alert(err)
+            Alert.alert('Error', err.message)
             setShowLoader(false)
         }
     }
