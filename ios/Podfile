@@ -25,7 +25,7 @@ if linkage != nil
   use_frameworks! :linkage => linkage.to_sym
 end
 
-target 'YoAspireMobileAppRN' do
+target 'VaaveTest' do
   config = use_native_modules!
 
   # Flags change depending on the env values.
@@ -45,7 +45,7 @@ target 'YoAspireMobileAppRN' do
     :app_path => "#{Pod::Config.instance.installation_root}/.."
   )
 
-  target 'YoAspireMobileAppRNTests' do
+  target 'VaaveTestTests' do
     inherit! :complete
     # Pods for testing
   end

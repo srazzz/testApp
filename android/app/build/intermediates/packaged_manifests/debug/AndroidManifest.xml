@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.yoaspiremobileapprn"
+    package="com.VaaveTest"
     android:versionCode="1"
     android:versionName="1.0" >
 
@@ -16,7 +16,7 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
-        android:name="com.yoaspiremobileapprn.MainApplication"
+        android:name="com.VaaveTest.MainApplication"
         android:allowBackup="false"
         android:appComponentFactory="androidx.core.app.CoreComponentFactory"
         android:debuggable="true"
@@ -30,7 +30,7 @@
             android:name="com.facebook.react.devsupport.DevSettingsActivity"
             android:exported="false" />
         <activity
-            android:name="com.yoaspiremobileapprn.MainActivity"
+            android:name="com.VaaveTest.MainActivity"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:exported="true"
             android:label="@string/app_name"
@@ -45,7 +45,7 @@
 
         <provider
             android:name="com.imagepicker.ImagePickerProvider"
-            android:authorities="com.yoaspiremobileapprn.imagepickerprovider"
+            android:authorities="com.VaaveTest.imagepickerprovider"
             android:exported="false"
             android:grantUriPermissions="true" >
             <meta-data
@@ -59,7 +59,7 @@
 
         <provider
             android:name="androidx.startup.InitializationProvider"
-            android:authorities="com.yoaspiremobileapprn.androidx-startup"
+            android:authorities="com.VaaveTest.androidx-startup"
             android:exported="false" >
             <meta-data
                 android:name="androidx.emoji2.text.EmojiCompatInitializer"

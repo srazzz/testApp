@@ -1,6 +1,6 @@
 1<?xml version="1.0" encoding="utf-8"?>
 2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-3    package="com.yoaspiremobileapprn"
+3    package="com.VaaveTest"
 4    android:versionCode="1"
 5    android:versionName="1.0" >
 6
@@ -29,7 +29,7 @@
 17
 18    <application
 18-->C:\practice\vaave3\testApp\android\app\src\main\AndroidManifest.xml:8:5-28:19
-19        android:name="com.yoaspiremobileapprn.MainApplication"
+19        android:name="com.VaaveTest.MainApplication"
 19-->C:\practice\vaave3\testApp\android\app\src\main\AndroidManifest.xml:9:7-38
 20        android:allowBackup="false"
 20-->C:\practice\vaave3\testApp\android\app\src\main\AndroidManifest.xml:13:7-34
@@ -56,7 +56,7 @@
 31-->C:\practice\vaave3\testApp\android\app\src\debug\AndroidManifest.xml:11:84-108
 32        <activity
 32-->C:\practice\vaave3\testApp\android\app\src\main\AndroidManifest.xml:16:7-27:18
-33            android:name="com.yoaspiremobileapprn.MainActivity"
+33            android:name="com.VaaveTest.MainActivity"
 33-->C:\practice\vaave3\testApp\android\app\src\main\AndroidManifest.xml:17:9-37
 34            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
 34-->C:\practice\vaave3\testApp\android\app\src\main\AndroidManifest.xml:19:9-118
@@ -84,7 +84,7 @@
 46-->[:react-native-image-picker] C:\practice\vaave3\testApp\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:8:9-16:20
 47            android:name="com.imagepicker.ImagePickerProvider"
 47-->[:react-native-image-picker] C:\practice\vaave3\testApp\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:13-63
-48            android:authorities="com.yoaspiremobileapprn.imagepickerprovider"
+48            android:authorities="com.VaaveTest.imagepickerprovider"
 48-->[:react-native-image-picker] C:\practice\vaave3\testApp\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:10:13-71
 49            android:exported="false"
 49-->[:react-native-image-picker] C:\practice\vaave3\testApp\node_modules\react-native-image-picker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:11:13-37
@@ -109,7 +109,7 @@
 60-->[androidx.emoji2:emoji2:1.0.0] C:\Users\dell\.gradle\caches\transforms-3\223146ef33e3aa619e8b04649706e145\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:26:9-34:20
 61            android:name="androidx.startup.InitializationProvider"
 61-->[androidx.emoji2:emoji2:1.0.0] C:\Users\dell\.gradle\caches\transforms-3\223146ef33e3aa619e8b04649706e145\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:27:13-67
-62            android:authorities="com.yoaspiremobileapprn.androidx-startup"
+62            android:authorities="com.VaaveTest.androidx-startup"
 62-->[androidx.emoji2:emoji2:1.0.0] C:\Users\dell\.gradle\caches\transforms-3\223146ef33e3aa619e8b04649706e145\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:28:13-68
 63            android:exported="false" >
 63-->[androidx.emoji2:emoji2:1.0.0] C:\Users\dell\.gradle\caches\transforms-3\223146ef33e3aa619e8b04649706e145\transformed\jetified-emoji2-1.0.0\AndroidManifest.xml:29:13-37
